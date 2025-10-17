@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, Menu } = require("electron");
 const path = require("path");
 const { spawn } = require("cross-spawn");
 
@@ -10,6 +10,12 @@ function createWindow() {
       preload: path.join(__dirname, "preload.js"),
     },
   });
+
+
+  // Remove the default menu bar
+  Menu.setApplicationMenu(null);
+
+
 
   win.loadFile("src/renderer/index.html");
 }
